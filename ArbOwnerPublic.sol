@@ -24,10 +24,10 @@ interface ArbOwnerPublic {
     /// @notice Retrieves the list of chain owners
     function getAllChainOwners() external view returns (address[] memory);
 
-		/// @notice Retrieves the timestamp from when the native token management
-		/// modifications are enabled.
-		/// Available in ArbOS version 42
-		function getNativeTokenManagementFrom() external view returns (uint64);
+    /// @notice Retrieves the timestamp from when the native token management
+    /// modifications are enabled.
+    /// Available in ArbOS version 42
+    function getNativeTokenManagementFrom() external view returns (uint64);
 
     /// @notice See if the user is a native token owner
     /// Available in ArbOS version 41
