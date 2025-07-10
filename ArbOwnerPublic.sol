@@ -28,5 +28,17 @@ interface ArbOwnerPublic {
     /// @notice Get the infrastructure fee collector
     function getInfraFeeAccount() external view returns (address);
 
+    /// @notice Get the Brotli compression level used for fast compression
+    /// @notice Available in ArbOS version 20 and above
+    function getBrotliCompressionLevel() external view returns (uint64);
+
+    /// @notice Get the next scheduled ArbOS version upgrade and its activation timestamp.
+    /// @notice Returns (0, 0) if no ArbOS upgrade is scheduled.
+    /// @notice Available in ArbOS version 20 and above
+    function getScheduledUpgrade()
+        external
+        view
+        returns (uint64 arbosVersion, uint64 scheduledForTimestamp);
+
     event ChainOwnerRectified(address rectifiedOwner);
 }
