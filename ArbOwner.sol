@@ -117,14 +117,6 @@ interface ArbOwner {
         int64 cost
     ) external;
 
-    /**
-     * @notice Sets the Brotli compression level used for fast compression
-     * Available in ArbOS version 12 with default level as 1
-     */
-    function setBrotliCompressionLevel(
-        uint64 level
-    ) external;
-
     /// @notice Sets the cost amortization cap in basis points
     function setAmortizedCostCapBips(
         uint64 cap
