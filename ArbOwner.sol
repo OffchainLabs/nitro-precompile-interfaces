@@ -71,17 +71,9 @@ interface ArbOwner {
     /// @notice Get the network fee collector
     function getNetworkFeeAccount() external view returns (address);
 
-    /// @notice Get the infrastructure fee collector
-    function getInfraFeeAccount() external view returns (address);
-
     /// @notice Set the network fee collector
     function setNetworkFeeAccount(
         address newNetworkFeeAccount
-    ) external;
-
-    /// @notice Set the infrastructure fee collector
-    function setInfraFeeAccount(
-        address newInfraFeeAccount
     ) external;
 
     /// @notice Upgrades ArbOS to the requested version at the requested timestamp
