@@ -130,6 +130,12 @@ interface ArbOwner {
         uint256 maxWeiToRelease
     ) external returns (uint256);
 
+    /// @notice Sets serialized chain config in ArbOS state
+    /// @notice Available in ArbOS version 11 and above
+    function setChainConfig(
+        string calldata chainConfig
+    ) external;
+
     /// Emitted when a successful call is made to this precompile
     event OwnerActs(bytes4 indexed method, address indexed owner, bytes data);
 }
