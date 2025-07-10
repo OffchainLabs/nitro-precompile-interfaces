@@ -136,6 +136,86 @@ interface ArbOwner {
         uint256 maxWeiToRelease
     ) external returns (uint256);
 
+    /// @notice Sets the amount of ink 1 gas buys
+    /// @notice Available in ArbOS version 30 and above
+    /// @param price the conversion rate (must fit in a uint24)
+    function setInkPrice(
+        uint32 price
+    ) external;
+
+    /// @notice Sets the maximum depth (in wasm words) a wasm stack may grow
+    /// @notice Available in ArbOS version 30 and above
+    function setWasmMaxStackDepth(
+        uint32 depth
+    ) external;
+
+    /// @notice Sets the number of free wasm pages a tx gets
+    /// @notice Available in ArbOS version 30 and above
+    function setWasmFreePages(
+        uint16 pages
+    ) external;
+
+    /// @notice Sets the base cost of each additional wasm page
+    /// @notice Available in ArbOS version 30 and above
+    function setWasmPageGas(
+        uint16 gas
+    ) external;
+
+    /// @notice Sets the maximum number of pages a wasm may allocate
+    /// @notice Available in ArbOS version 30 and above
+    function setWasmPageLimit(
+        uint16 limit
+    ) external;
+
+    /// @notice Sets the maximum size of the uncompressed wasm code in bytes
+    /// @notice Available in ArbOS version 30 and above
+    function setWasmMaxSize(
+        uint32 size
+    ) external;
+
+    /// @notice Sets the minimum costs to invoke a program
+    /// @notice Available in ArbOS version 30 and above
+    /// @param gas amount of gas paid in increments of 256 when not the program is not cached
+    /// @param cached amount of gas paid in increments of 64 when the program is cached
+    function setWasmMinInitGas(uint8 gas, uint16 cached) external;
+
+    /// @notice Sets the linear adjustment made to program init costs.
+    /// @notice Available in ArbOS version 30 and above
+    /// @param percent the adjustment (100% = no adjustment).
+    function setWasmInitCostScalar(
+        uint64 percent
+    ) external;
+
+    /// @notice Sets the number of days after which programs deactivate
+    /// @notice Available in ArbOS version 30 and above
+    function setWasmExpiryDays(
+        uint16 _days
+    ) external;
+
+    /// @notice Sets the age a program must be to perform a keepalive
+    /// @notice Available in ArbOS version 30 and above
+    function setWasmKeepaliveDays(
+        uint16 _days
+    ) external;
+
+    /// @notice Sets the number of extra programs ArbOS caches during a given block
+    /// @notice Available in ArbOS version 30 and above
+    function setWasmBlockCacheSize(
+        uint16 count
+    ) external;
+
+    /// @notice Adds account as a wasm cache manager
+    /// @notice Available in ArbOS version 30 and above
+    function addWasmCacheManager(
+        address manager
+    ) external;
+
+    /// @notice Removes account from the list of wasm cache managers
+    /// @notice Available in ArbOS version 30 and above
+    function removeWasmCacheManager(
+        address manager
+    ) external;
+
     /// @notice Sets serialized chain config in ArbOS state
     /// @notice Available in ArbOS version 11 and above
     function setChainConfig(

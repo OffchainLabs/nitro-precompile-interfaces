@@ -31,6 +31,9 @@ interface ArbDebug {
         uint64 number
     ) external pure;
 
+    /// @notice Available in ArbOS version 30 and above
+    function panic() external;
+
     function legacyError() external pure;
 
     error Custom(uint64, string, bool);
