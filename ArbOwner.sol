@@ -122,11 +122,6 @@ interface ArbOwner {
         uint64 cap
     ) external;
 
-    /// @notice Releases surplus funds from L1PricerFundsPoolAddress for use
-    function releaseL1PricerSurplusFunds(
-        uint256 maxWeiToRelease
-    ) external returns (uint256);
-
     /// Emitted when a successful call is made to this precompile
     event OwnerActs(bytes4 indexed method, address indexed owner, bytes data);
 }
