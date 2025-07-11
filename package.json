@@ -1,6 +1,6 @@
 {
   "name": "@arbitrum/nitro-precompile-interfaces",
-  "version": "5.0.0",
+  "version": "10.0.0",
   "description": "Solidity interfaces for Arbitrum Nitro precompiled contracts",
   "author": "Offchain Labs, Inc.",
   "license": "BUSL-1.1",
