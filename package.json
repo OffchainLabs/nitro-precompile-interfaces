@@ -1,25 +1,24 @@
 {
-    "name": "@arbitrum/nitro-precompile-interfaces",
-    "version": "1.0.0",
-    "description": "Solidity interfaces for Arbitrum Nitro precompiled contracts",
-    "author": "Offchain Labs, Inc.",
-    "license": "BUSL-1.1",
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/offchainlabs/nitro-precompile-interfaces.git"
-    },
-    "files": [
-        "*.sol",
-        "README.md",
-        "LICENSE.md"
-    ],
-    "bugs": {
-      "url": "https://github.com/offchainlabs/nitro-precompile-interfaces/issues"
-    },
-    "scripts": {
-        "build": "forge build",
-        "format": "forge fmt"
-    },
-    "private": false
-  }
-  
+  "name": "@arbitrum/nitro-precompile-interfaces",
+  "version": "5.0.0",
+  "description": "Solidity interfaces for Arbitrum Nitro precompiled contracts",
+  "author": "Offchain Labs, Inc.",
+  "license": "BUSL-1.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/offchainlabs/nitro-precompile-interfaces.git"
+  },
+  "files": [
+    "*.sol",
+    "README.md",
+    "LICENSE.md"
+  ],
+  "bugs": {
+    "url": "https://github.com/offchainlabs/nitro-precompile-interfaces/issues"
+  },
+  "scripts": {
+    "build": "forge build",
+    "format": "forge fmt"
+  },
+  "private": false
+}
