@@ -20,6 +20,4 @@ interface ArbOwnerPublic {
 
     /// @notice Get the infrastructure fee collector
     function getInfraFeeAccount() external view returns (address);
-
-    event ChainOwnerRectified(address rectifiedOwner);
 }
