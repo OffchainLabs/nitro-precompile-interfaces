@@ -84,4 +84,8 @@ interface ArbGasInfo {
 
     /// @notice Returns the cost amortization cap in basis points
     function getAmortizedCostCapBips() external view returns (uint64);
+
+    /// @notice Returns the available funds from L1 fees
+    /// @notice Available in ArbOS version 10 and above
+    function getL1FeesAvailable() external view returns (uint256);
 }
