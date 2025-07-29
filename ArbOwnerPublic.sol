@@ -12,6 +12,13 @@ interface ArbOwnerPublic {
         address addr
     ) external view returns (bool);
 
+    /// @notice Rectify the list of chain owners
+    /// @notice If successful, emits ChainOwnerRectified event
+    /// @notice Available in ArbOS version 11 and above
+    function rectifyChainOwner(
+        address ownerToRectify
+    ) external;
+
     /// @notice Retrieves the list of chain owners
     function getAllChainOwners() external view returns (address[] memory);
 
@@ -20,4 +27,6 @@ interface ArbOwnerPublic {
 
     /// @notice Get the infrastructure fee collector
     function getInfraFeeAccount() external view returns (address);
+
+    event ChainOwnerRectified(address rectifiedOwner);
 }
