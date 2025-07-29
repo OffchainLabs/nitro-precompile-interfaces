@@ -19,13 +19,19 @@ interface ArbWasmCache {
     /// @return managers the list of managers.
     function allCacheManagers() external view returns (address[] memory managers);
 
-    /// @notice Caches all programs with the given codehash.
+    /// @dev Deprecated, replaced with cacheProgram
+    /// @notice Available in ArbOS version 30 only
+    function cacheCodehash(
+        bytes32 codehash
+    ) external;
+
+    /// @notice Caches all programs with a codehash equal to the given address.
     /// @notice Reverts if the programs have expired.
     /// @notice Caller must be a cache manager or chain owner.
     /// @notice If you're looking for how to bid for position, interact with the chain's cache manager contract.
-    /// @notice Available in ArbOS version 30.
-    function cacheCodehash(
-        bytes32 codehash
+    /// @notice Available in ArbOS version 31 and above
+    function cacheProgram(
+        address addr
     ) external;
 
     /// @notice Evicts all programs with the given codehash.
