@@ -33,34 +33,6 @@ interface ArbOwner {
     /// @notice Retrieves the list of chain owners
     function getAllChainOwners() external view returns (address[] memory);
 
-    /// @notice Sets the NativeTokenManagementFrom time
-    /// Available in ArbOS version 41
-    function setNativeTokenManagementFrom(
-        uint64 timestamp
-    ) external;
-
-    /// @notice Add account as a native token owner
-    /// Available in ArbOS version 41
-    function addNativeTokenOwner(
-        address newOwner
-    ) external;
-
-    /// @notice Remove account from the list of native token owners
-    /// Available in ArbOS version 41
-    function removeNativeTokenOwner(
-        address ownerToRemove
-    ) external;
-
-    /// @notice See if the user is a native token owner
-    /// Available in ArbOS version 41
-    function isNativeTokenOwner(
-        address addr
-    ) external view returns (bool);
-
-    /// @notice Retrieves the list of native token owners
-    /// Available in ArbOS version 41
-    function getAllNativeTokenOwners() external view returns (address[] memory);
-
     /// @notice Set how slowly ArbOS updates its estimate of the L1 basefee
     function setL1BaseFeeEstimateInertia(
         uint64 inertia
@@ -99,17 +71,9 @@ interface ArbOwner {
     /// @notice Get the network fee collector
     function getNetworkFeeAccount() external view returns (address);
 
-    /// @notice Get the infrastructure fee collector
-    function getInfraFeeAccount() external view returns (address);
-
     /// @notice Set the network fee collector
     function setNetworkFeeAccount(
         address newNetworkFeeAccount
-    ) external;
-
-    /// @notice Set the infrastructure fee collector
-    function setInfraFeeAccount(
-        address newInfraFeeAccount
     ) external;
 
     /// @notice Upgrades ArbOS to the requested version at the requested timestamp
@@ -145,102 +109,9 @@ interface ArbOwner {
         int64 cost
     ) external;
 
-    /**
-     * @notice Sets the Brotli compression level used for fast compression
-     * Available in ArbOS version 12 with default level as 1
-     */
-    function setBrotliCompressionLevel(
-        uint64 level
-    ) external;
-
     /// @notice Sets the cost amortization cap in basis points
     function setAmortizedCostCapBips(
         uint64 cap
-    ) external;
-
-    /// @notice Releases surplus funds from L1PricerFundsPoolAddress for use
-    function releaseL1PricerSurplusFunds(
-        uint256 maxWeiToRelease
-    ) external returns (uint256);
-
-    /// @notice Sets the amount of ink 1 gas buys
-    /// @param price the conversion rate (must fit in a uint24)
-    function setInkPrice(
-        uint32 price
-    ) external;
-
-    /// @notice Sets the maximum depth (in wasm words) a wasm stack may grow
-    function setWasmMaxStackDepth(
-        uint32 depth
-    ) external;
-
-    /// @notice Sets the number of free wasm pages a tx gets
-    function setWasmFreePages(
-        uint16 pages
-    ) external;
-
-    /// @notice Sets the base cost of each additional wasm page
-    function setWasmPageGas(
-        uint16 gas
-    ) external;
-
-    /// @notice Sets the maximum number of pages a wasm may allocate
-    function setWasmPageLimit(
-        uint16 limit
-    ) external;
-
-    /// @notice Sets the maximum size of the uncompressed wasm code in bytes
-    function setWasmMaxSize(
-        uint32 size
-    ) external;
-
-    /// @notice Sets the minimum costs to invoke a program
-    /// @param gas amount of gas paid in increments of 256 when not the program is not cached
-    /// @param cached amount of gas paid in increments of 64 when the program is cached
-    function setWasmMinInitGas(uint8 gas, uint16 cached) external;
-
-    /// @notice Sets the linear adjustment made to program init costs.
-    /// @param percent the adjustment (100% = no adjustment).
-    function setWasmInitCostScalar(
-        uint64 percent
-    ) external;
-
-    /// @notice Sets the number of days after which programs deactivate
-    function setWasmExpiryDays(
-        uint16 _days
-    ) external;
-
-    /// @notice Sets the age a program must be to perform a keepalive
-    function setWasmKeepaliveDays(
-        uint16 _days
-    ) external;
-
-    /// @notice Sets the number of extra programs ArbOS caches during a given block
-    function setWasmBlockCacheSize(
-        uint16 count
-    ) external;
-
-    /// @notice Adds account as a wasm cache manager
-    function addWasmCacheManager(
-        address manager
-    ) external;
-
-    /// @notice Removes account from the list of wasm cache managers
-    function removeWasmCacheManager(
-        address manager
-    ) external;
-
-    /// @notice Sets serialized chain config in ArbOS state
-    function setChainConfig(
-        string calldata chainConfig
-    ) external;
-
-    /**
-     * @notice Sets the increased calldata price feature on or off (EIP-7623)
-     * Available in ArbOS version 40 with default as false
-     */
-    function setCalldataPriceIncrease(
-        bool enable
     ) external;
 
     /// Emitted when a successful call is made to this precompile

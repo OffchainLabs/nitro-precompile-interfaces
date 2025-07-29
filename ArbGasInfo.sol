@@ -61,14 +61,6 @@ interface ArbGasInfo {
     /// @notice Get how slowly ArbOS updates its estimate of the L1 basefee
     function getL1BaseFeeEstimateInertia() external view returns (uint64);
 
-    /// @notice Get the L1 pricer reward rate, in wei per unit
-    /// Available in ArbOS version 11
-    function getL1RewardRate() external view returns (uint64);
-
-    /// @notice Get the L1 pricer reward recipient
-    /// Available in ArbOS version 11
-    function getL1RewardRecipient() external view returns (address);
-
     /// @notice Deprecated -- Same as getL1BaseFeeEstimate()
     function getL1GasPriceEstimate() external view returns (uint256);
 
@@ -92,27 +84,4 @@ interface ArbGasInfo {
 
     /// @notice Returns the cost amortization cap in basis points
     function getAmortizedCostCapBips() external view returns (uint64);
-
-    /// @notice Returns the available funds from L1 fees
-    function getL1FeesAvailable() external view returns (uint256);
-
-    /// @notice Returns the equilibration units parameter for L1 price adjustment algorithm
-    /// Available in ArbOS version 20
-    function getL1PricingEquilibrationUnits() external view returns (uint256);
-
-    /// @notice Returns the last time the L1 calldata pricer was updated.
-    /// Available in ArbOS version 20
-    function getLastL1PricingUpdateTime() external view returns (uint64);
-
-    /// @notice Returns the amount of L1 calldata payments due for rewards (per the L1 reward rate)
-    /// Available in ArbOS version 20
-    function getL1PricingFundsDueForRewards() external view returns (uint256);
-
-    /// @notice Returns the amount of L1 calldata posted since the last update.
-    /// Available in ArbOS version 20
-    function getL1PricingUnitsSinceUpdate() external view returns (uint64);
-
-    /// @notice Returns the L1 pricing surplus as of the last update (may be negative).
-    /// Available in ArbOS version 20
-    function getLastL1PricingSurplus() external view returns (int256);
 }
