@@ -96,4 +96,24 @@ interface ArbGasInfo {
     /// @notice Returns the available funds from L1 fees
     /// @notice Available in ArbOS version 10 and above
     function getL1FeesAvailable() external view returns (uint256);
+
+    /// @notice Returns the equilibration units parameter for L1 price adjustment algorithm
+    /// @notice Available in ArbOS version 20 and above
+    function getL1PricingEquilibrationUnits() external view returns (uint256);
+
+    /// @notice Returns the last time the L1 calldata pricer was updated.
+    /// @notice Available in ArbOS version 20 and above
+    function getLastL1PricingUpdateTime() external view returns (uint64);
+
+    /// @notice Returns the amount of L1 calldata payments due for rewards (per the L1 reward rate)
+    /// @notice Available in ArbOS version 20 and above
+    function getL1PricingFundsDueForRewards() external view returns (uint256);
+
+    /// @notice Returns the amount of L1 calldata posted since the last update.
+    /// @notice Available in ArbOS version 20 and above
+    function getL1PricingUnitsSinceUpdate() external view returns (uint64);
+
+    /// @notice Returns the L1 pricing surplus as of the last update (may be negative).
+    /// @notice Available in ArbOS version 20 and above
+    function getLastL1PricingSurplus() external view returns (int256);
 }
