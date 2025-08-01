@@ -268,6 +268,23 @@ interface ArbOwner {
         bool enable
     ) external;
 
+    /// @notice Adds or updates a resource constraint
+    /// @notice Available on ArbOS version 50 and above
+    /// @param resource the resource kind (see Nitro documentation for the list of resources)
+    /// @param periodSecs the time window for the constraint
+    /// @param targetPerPeriod the target limit for the given period and resource
+    function setResourceConstraint(
+        uint8 resource,
+        uint32 periodSecs,
+        uint64 targetPerPeriod
+    ) external;
+
+    /// @notice Removes a resource constraint
+    /// @notice Available on ArbOS version 50 and above
+    /// @param resource the resource kind (see Nitro documentation for the list of resources)
+    /// @param periodSecs the time window for the constraint
+    function clearConstraint(uint8 resource, uint32 periodSecs) external;
+
     /// Emitted when a successful call is made to this precompile
     event OwnerActs(bytes4 indexed method, address indexed owner, bytes data);
 }
