@@ -66,7 +66,11 @@ interface ArbOwner {
     /// @param resource the resource kind (see Nitro documentation for the list of resources)
     /// @param periodSecs the time window for the constraint
     /// @param targetPerPeriod the target limit for the given period and resource
-    function setResourceConstraint(uint8 resource, uint32 periodSecs, uint64 targetPerPeriod) external;
+    function setResourceConstraint(
+        uint8 resource,
+        uint32 periodSecs,
+        uint64 targetPerPeriod
+    ) external;
 
     /// @notice Removes a resource constraint
     /// @notice Available on ArbOS version 50 and above
