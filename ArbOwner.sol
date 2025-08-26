@@ -140,6 +140,14 @@ interface ArbOwner {
         uint256 pricePerUnit
     ) external;
 
+    /// @notice Get how much L1 charges per non-zero byte of calldata
+    function getL1CalldataPrice() external view returns (uint256);
+
+    /// @notice Set how much L1 charges per non-zero byte of calldata
+    function setL1CalldataPrice(
+        uint256 calldataPrice
+    ) external;
+
     /// @notice Sets the base charge (in L1 gas) attributed to each data batch in the calldata pricer
     function setPerBatchGasCharge(
         int64 cost
