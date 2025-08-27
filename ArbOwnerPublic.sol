@@ -48,6 +48,7 @@ interface ArbOwnerPublic {
     function getBrotliCompressionLevel() external view returns (uint64);
 
     /// @notice Get how much L1 charges per non-zero byte of calldata
+    /// @notice Available in ArbOS version 50 and above
     function getL1CalldataPrice() external view returns (uint256);
 
     /// @notice Get the next scheduled ArbOS version upgrade and its activation timestamp.

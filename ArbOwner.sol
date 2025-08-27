@@ -142,10 +142,8 @@ interface ArbOwner {
         uint256 pricePerUnit
     ) external;
 
-    /// @notice Get how much L1 charges per non-zero byte of calldata
-    function getL1CalldataPrice() external view returns (uint256);
-
     /// @notice Set how much L1 charges per non-zero byte of calldata
+    /// @notice Available in ArbOS version 50 and above
     function setL1CalldataPrice(
         uint256 calldataPrice
     ) external;
