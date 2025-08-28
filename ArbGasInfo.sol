@@ -49,8 +49,12 @@ interface ArbGasInfo {
     function getPricesInArbGas() external view returns (uint256, uint256, uint256);
 
     /// @notice Get the gas accounting parameters. `gasPoolMax` is always zero, as the exponential pricing model has no such notion.
-    /// @return (speedLimitPerSecond, gasPoolMax, maxTxGasLimit)
+    /// @return (speedLimitPerSecond, gasPoolMax, maxBlockGasLimit)
     function getGasAccountingParams() external view returns (uint256, uint256, uint256);
+
+    /// @notice Get the maxTxGasLimit
+    /// @notice Available in ArbOS version 50 and above
+    function getMaxTxGasLimit() external view returns (uint256);
 
     /// @notice Get the minimum gas price needed for a tx to succeed
     function getMinimumGasPrice() external view returns (uint256);

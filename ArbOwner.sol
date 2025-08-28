@@ -81,8 +81,14 @@ interface ArbOwner {
         uint64 limit
     ) external;
 
-    /// @notice Set the maximum size a tx (and block) can be
+    /// @notice Set the maximum size a tx can be
     function setMaxTxGasLimit(
+        uint64 limit
+    ) external;
+
+    /// @notice Set the maximum size a block can be
+    /// @notice Available in ArbOS version 50 and above
+    function setMaxBlockGasLimit(
         uint64 limit
     ) external;
 
