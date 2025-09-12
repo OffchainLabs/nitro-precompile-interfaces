@@ -49,7 +49,7 @@ interface ArbOwnerPublic {
 
     /// @notice Get how much L1 charges per non-zero byte of calldata
     /// @notice Available in ArbOS version 50 and above
-    function getL1CalldataPrice() external view returns (uint256);
+    function getParentGasFloorPerToken() external view returns (uint64);
 
     /// @notice Get the next scheduled ArbOS version upgrade and its activation timestamp.
     /// @notice Returns (0, 0) if no ArbOS upgrade is scheduled.

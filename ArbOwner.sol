@@ -150,8 +150,8 @@ interface ArbOwner {
 
     /// @notice Set how much L1 charges per non-zero byte of calldata
     /// @notice Available in ArbOS version 50 and above
-    function setL1CalldataPrice(
-        uint256 calldataPrice
+    function setParentGasFloorPerToken(
+        uint64 floorPerToken
     ) external;
 
     /// @notice Sets the base charge (in L1 gas) attributed to each data batch in the calldata pricer
