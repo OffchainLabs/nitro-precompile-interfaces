@@ -40,9 +40,16 @@ interface ArbosActs {
         uint256 batchTimestamp,
         address batchPosterAddress,
         uint64 batchNumber,
+        uint64 batchDataGas,
+        uint256 l1BaseFeeWei
+    ) external;
+
+    function batchPostingReportV2(
+        uint256 batchTimestamp,
+        address batchPosterAddress,
+        uint64 batchNumber,
         uint64 batchCalldataLength,
         uint64 batchCalldataNonZeros,
-        uint64 batchLegacyGas,
         uint64 batchExtraGas,
         uint256 l1BaseFeeWei
     ) external;
