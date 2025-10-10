@@ -4,6 +4,8 @@
 
 pragma solidity >=0.4.21 <0.9.0;
 
+import {ArbResourceConstraintsTypes} from "./ArbResourceConstraintsTypes.sol";
+
 /// @title Provides insight into the cost of using the chain.
 /// @notice These methods have been adjusted to account for Nitro's heavy use of calldata compression.
 /// Of note to end-users, we no longer make a distinction between non-zero and zero-valued calldata bytes.
@@ -120,4 +122,11 @@ interface ArbGasInfo {
     /// @notice Returns the L1 pricing surplus as of the last update (may be negative).
     /// @notice Available in ArbOS version 20 and above
     function getLastL1PricingSurplus() external view returns (int256);
+
+    /// @notice Lists all resource constraints currently configured in ArbOS.
+    /// @notice Available on ArbOS version 50 and above
+    function listResourceConstraints()
+        external
+        view
+        returns (ArbResourceConstraintsTypes.ResourceConstraint[] memory constraints);
 }
