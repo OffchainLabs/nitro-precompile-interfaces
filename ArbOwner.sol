@@ -268,15 +268,23 @@ interface ArbOwner {
         bool enable
     ) external;
 
+    /// @notice A pair representing a resource kind and its weight in constraint calculations.
+    /// @param resource the resource kind (see Nitro documentation for list of resources)
+    /// @param weight the relative weight of this resource in the constraint
+    struct ResourceWeight {
+        uint8 resource;
+        uint64 weight;
+    }
+
     /// @notice Adds or updates a resource constraint
     /// @notice Available on ArbOS version 50 and above
-    /// @param resource the resource kind (see Nitro documentation for the list of resources)
+    /// @param resources an array of (resource, weight) pairs
     /// @param periodSecs the time window for the constraint
-    /// @param targetPerPeriod the target limit for the given period and resource
+    /// @param targetPerSec allowed usage per second across weighted resources
     function setResourceConstraint(
-        uint8 resource,
+        ResourceWeight[] calldata resources,
         uint32 periodSecs,
-        uint64 targetPerPeriod
+        uint64 targetPerSec
     ) external;
 
     /// @notice Removes a resource constraint
