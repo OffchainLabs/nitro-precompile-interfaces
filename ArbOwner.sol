@@ -271,7 +271,7 @@ interface ArbOwner {
     ) external;
 
     /// @notice Adds or updates a resource constraint
-    /// @notice Available on ArbOS version 50 and above
+    /// @notice Available on ArbOS version 60 and above
     /// @param resources an array of resource–weight pairs (see Nitro documentation for the list of resources)
     /// @param periodSecs the time window for the constraint
     /// @param targetPerSec allowed usage per second across weighted resources
@@ -282,10 +282,13 @@ interface ArbOwner {
     ) external;
 
     /// @notice Removes a resource constraint
-    /// @notice Available on ArbOS version 50 and above
+    /// @notice Available on ArbOS version 60 and above
     /// @param resources the list of resource kinds to be removed (see Nitro documentation for the list of resources)
     /// @param periodSecs the time window for the constraint
-    function clearConstraint(uint8[] calldata resources, uint32 periodSecs) external;
+    function clearConstraint(
+        ArbResourceConstraintsTypes.ResourceKind[] calldata resources,
+        uint32 periodSecs
+    ) external;
 
     /// Emitted when a successful call is made to this precompile
     event OwnerActs(bytes4 indexed method, address indexed owner, bytes data);
