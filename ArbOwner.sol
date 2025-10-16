@@ -4,6 +4,8 @@
 
 pragma solidity >=0.4.21 <0.9.0;
 
+import {ArbResourceConstraintsTypes} from "./ArbResourceConstraintsTypes.sol";
+
 /**
  * @title Provides owners with tools for managing the rollup.
  * @notice Calls by non-owners will always revert.
@@ -266,6 +268,26 @@ interface ArbOwner {
     /// @notice Available in ArbOS version 40 and above with default as false
     function setCalldataPriceIncrease(
         bool enable
+    ) external;
+
+    /// @notice Adds or updates a resource constraint
+    /// @notice Available on ArbOS version 60 and above
+    /// @param resources an array of resource–weight pairs (see Nitro documentation for the list of resources)
+    /// @param periodSecs the time window for the constraint
+    /// @param targetPerSec allowed usage per second across weighted resources
+    function setResourceConstraint(
+        ArbResourceConstraintsTypes.ResourceWeight[] calldata resources,
+        uint32 periodSecs,
+        uint64 targetPerSec
+    ) external;
+
+    /// @notice Removes a resource constraint
+    /// @notice Available on ArbOS version 60 and above
+    /// @param resources the list of resource kinds to be removed (see Nitro documentation for the list of resources)
+    /// @param periodSecs the time window for the constraint
+    function clearConstraint(
+        ArbResourceConstraintsTypes.ResourceKind[] calldata resources,
+        uint32 periodSecs
     ) external;
 
     /// Emitted when a successful call is made to this precompile
