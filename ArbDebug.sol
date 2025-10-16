@@ -12,6 +12,12 @@ interface ArbDebug {
     /// @notice Caller becomes a chain owner
     function becomeChainOwner() external;
 
+    /// @notice Overwrite an existing contract's code
+    function overwriteContractCode(
+        address target,
+        bytes calldata newCode
+    ) external returns (bytes memory oldCode);
+
     /// @notice Emit events with values based on the args provided
     function events(bool flag, bytes32 value) external payable returns (address, uint256);
 
