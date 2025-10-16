@@ -77,6 +77,8 @@ interface ArbOwner {
     ) external;
 
     /// @notice Set the computational speed limit for the chain
+    /// @dev Deprecated starting from ArbOS version 50.
+    ///      Replaced by `setGasPricingConstraints`, which supports multiple constraints.
     function setSpeedLimit(
         uint64 limit
     ) external;
@@ -93,11 +95,15 @@ interface ArbOwner {
     ) external;
 
     /// @notice Set the L2 gas pricing inertia
+    /// @dev Deprecated starting from ArbOS version 50.
+    ///      Replaced by `setGasPricingConstraints`, which supports multiple constraints.
     function setL2GasPricingInertia(
         uint64 sec
     ) external;
 
     /// @notice Set the L2 gas backlog tolerance
+    /// @dev Deprecated starting from ArbOS version 50.
+    ///      Ignored by the Multi-Constraint Pricer model.
     function setL2GasBacklogTolerance(
         uint64 sec
     ) external;
@@ -266,6 +272,14 @@ interface ArbOwner {
     /// @notice Available in ArbOS version 40 and above with default as false
     function setCalldataPriceIncrease(
         bool enable
+    ) external;
+
+    /// @notice Sets the list of gas pricing constraints for the Multi-Constraint Pricer.
+    /// @notice Replaces existing constraints configuration and resets all backlogs to zero.
+    /// @notice Available in ArbOS version 50 and above.
+    /// @param constraints Array of pairs (gas_target_per_second, time_constant_seconds)
+    function setGasPricingConstraints(
+        uint64[2][] calldata constraints
     ) external;
 
     /// Emitted when a successful call is made to this precompile
