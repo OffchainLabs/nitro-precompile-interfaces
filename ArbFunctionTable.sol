@@ -22,5 +22,8 @@ interface ArbFunctionTable {
     ) external view returns (uint256);
 
     /// @notice No-op
-    function get(address addr, uint256 index) external view returns (uint256, bool, uint256);
+    function get(
+        address addr,
+        uint256 index
+    ) external view returns (uint256, bool, uint256);
 }

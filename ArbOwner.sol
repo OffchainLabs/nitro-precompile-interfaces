@@ -121,7 +121,10 @@ interface ArbOwner {
     ) external;
 
     /// @notice Upgrades ArbOS to the requested version at the requested timestamp
-    function scheduleArbOSUpgrade(uint64 newVersion, uint64 timestamp) external;
+    function scheduleArbOSUpgrade(
+        uint64 newVersion,
+        uint64 timestamp
+    ) external;
 
     /// @notice Sets equilibration units parameter for L1 price adjustment algorithm
     function setL1PricingEquilibrationUnits(
@@ -217,7 +220,10 @@ interface ArbOwner {
     /// @notice Available in ArbOS version 30 and above
     /// @param gas amount of gas paid in increments of 256 when not the program is not cached
     /// @param cached amount of gas paid in increments of 64 when the program is cached
-    function setWasmMinInitGas(uint8 gas, uint16 cached) external;
+    function setWasmMinInitGas(
+        uint8 gas,
+        uint16 cached
+    ) external;
 
     /// @notice Sets the linear adjustment made to program init costs.
     /// @notice Available in ArbOS version 30 and above
