@@ -124,7 +124,7 @@ interface ArbGasInfo {
     function getLastL1PricingSurplus() external view returns (int256);
 
     /// @notice Lists all resource constraints currently configured in ArbOS.
-    /// @notice Available on ArbOS version 50 and above
+    /// @notice Available on ArbOS version 60 and above
     function listResourceConstraints()
         external
         view
