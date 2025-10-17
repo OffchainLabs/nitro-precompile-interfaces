@@ -13,7 +13,10 @@ interface ArbDebug {
     function becomeChainOwner() external;
 
     /// @notice Emit events with values based on the args provided
-    function events(bool flag, bytes32 value) external payable returns (address, uint256);
+    function events(
+        bool flag,
+        bytes32 value
+    ) external payable returns (address, uint256);
 
     /// @notice Tries (and fails) to emit logs in a view context
     function eventsView() external view;
