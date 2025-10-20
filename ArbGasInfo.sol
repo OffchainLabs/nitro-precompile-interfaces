@@ -125,6 +125,10 @@ interface ArbGasInfo {
     /// @notice Available in ArbOS version 20 and above
     function getLastL1PricingSurplus() external view returns (int256);
 
+    /// @notice Get the maximum block gas limit
+    /// @notice Available in ArbOS version 50 and above
+    function getMaxBlockGasLimit() external view returns (uint256);
+
     /// @notice Get the current gas pricing constraints used by the Multi-Constraint Pricer.
     /// @notice Each constraint contains:
     ///         - uint64 gas_target (in gas/second)
