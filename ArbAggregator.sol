@@ -41,7 +41,10 @@ interface ArbAggregator {
     /// This reverts unless called by the batch poster, its fee collector, or a chain owner
     /// @param batchPoster The batch poster to set the fee collector for
     /// @param newFeeCollector The new fee collector to set
-    function setFeeCollector(address batchPoster, address newFeeCollector) external;
+    function setFeeCollector(
+        address batchPoster,
+        address newFeeCollector
+    ) external;
 
     /// @notice Deprecated, always returns zero
     /// @notice Get the tx base fee (in approximate L1 gas) for aggregator
@@ -56,5 +59,8 @@ interface ArbAggregator {
     /// Revert if feeInL1Gas is outside the chain's allowed bounds
     /// @param aggregator The aggregator to set the fee for
     /// @param feeInL1Gas The base fee in L1 gas
-    function setTxBaseFee(address aggregator, uint256 feeInL1Gas) external;
+    function setTxBaseFee(
+        address aggregator,
+        uint256 feeInL1Gas
+    ) external;
 }

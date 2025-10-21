@@ -49,7 +49,10 @@ interface ArbGasInfo {
     function getPricesInArbGas() external view returns (uint256, uint256, uint256);
 
     /// @notice Get the gas accounting parameters. `gasPoolMax` is always zero, as the exponential pricing model has no such notion.
+    /// @notice Starting from ArbOS version 50, returns `speedLimitPerSecond` as the target from the longest-period constraint.
+    /// @notice For new integrations, prefer `getMaxBlockGasLimit` and `getGasPricingConstraints`.
     /// @return (speedLimitPerSecond, gasPoolMax, maxBlockGasLimit)
+    /// @dev Deprecated starting from ArbOS version 50.
     function getGasAccountingParams() external view returns (uint256, uint256, uint256);
 
     /// @notice Get the maxTxGasLimit
@@ -80,12 +83,21 @@ interface ArbGasInfo {
     function getCurrentTxL1GasFees() external view returns (uint256);
 
     /// @notice Get the backlogged amount of gas burnt in excess of the speed limit
+    /// @notice Starting from ArbOS version 50, returns the backlog of the longest-period constraint among all configured constraints.
+    /// @notice For new integrations, prefer `getGasPricingConstraints`.
+    /// @dev Deprecated starting from ArbOS version 50.
     function getGasBacklog() external view returns (uint64);
 
     /// @notice Get how slowly ArbOS updates the L2 basefee in response to backlogged gas
+    /// @notice Starting from ArbOS version 50, returns the inertia value derived from the longest-period constraint
+    /// @notice For new integrations, prefer `getGasPricingConstraints`.
+    /// @dev Deprecated starting from ArbOS version 50.
     function getPricingInertia() external view returns (uint64);
 
     /// @notice Get the forgivable amount of backlogged gas ArbOS will ignore when raising the basefee
+    /// @notice Starting from ArbOS version 50, this function always returns zero.
+    /// @notice There is no tolerance for backlogged gas in the new pricing model.
+    /// @dev Deprecated starting from ArbOS version 50.
     function getGasBacklogTolerance() external view returns (uint64);
 
     /// @notice Returns the surplus of funds for L1 batch posting payments (may be negative).
@@ -120,4 +132,17 @@ interface ArbGasInfo {
     /// @notice Returns the L1 pricing surplus as of the last update (may be negative).
     /// @notice Available in ArbOS version 20 and above
     function getLastL1PricingSurplus() external view returns (int256);
+
+    /// @notice Get the maximum block gas limit
+    /// @notice Available in ArbOS version 50 and above
+    function getMaxBlockGasLimit() external view returns (uint64);
+
+    /// @notice Get the current gas pricing constraints used by the Multi-Constraint Pricer.
+    /// @notice Each constraint contains the following values:
+    ///         - `uint64 gas_target_per_second`: target gas usage per second
+    ///         - `uint64 time_constant_seconds`: time constant in seconds
+    ///         - `uint64 backlog`: current backlog in gas units
+    /// @return constraints Array of triples (gas_target_per_second, time_constant_seconds, backlog)
+    /// @notice Available in ArbOS version 50 and above.
+    function getGasPricingConstraints() external view returns (uint64[3][] memory constraints);
 }

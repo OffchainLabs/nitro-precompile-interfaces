@@ -77,6 +77,9 @@ interface ArbOwner {
     ) external;
 
     /// @notice Set the computational speed limit for the chain
+    /// @notice Starting from ArbOS version 50, this function always returns an error.
+    /// @notice Use `setGasPricingConstraints` instead, which supports configuring multiple constraints.
+    /// @dev Deprecated starting from ArbOS version 50.
     function setSpeedLimit(
         uint64 limit
     ) external;
@@ -93,11 +96,17 @@ interface ArbOwner {
     ) external;
 
     /// @notice Set the L2 gas pricing inertia
+    /// @notice Starting from ArbOS version 50, this function always returns an error.
+    /// @notice Use `setGasPricingConstraints` instead, which supports configuring multiple constraints.
+    /// @dev Deprecated starting from ArbOS version 50.
     function setL2GasPricingInertia(
         uint64 sec
     ) external;
 
     /// @notice Set the L2 gas backlog tolerance
+    /// @notice Starting from ArbOS version 50, this function always returns an error.
+    /// @notice Use `setGasPricingConstraints` instead, which supports configuring multiple constraints.
+    /// @dev Deprecated starting from ArbOS version 50.
     function setL2GasBacklogTolerance(
         uint64 sec
     ) external;
@@ -121,7 +130,10 @@ interface ArbOwner {
     ) external;
 
     /// @notice Upgrades ArbOS to the requested version at the requested timestamp
-    function scheduleArbOSUpgrade(uint64 newVersion, uint64 timestamp) external;
+    function scheduleArbOSUpgrade(
+        uint64 newVersion,
+        uint64 timestamp
+    ) external;
 
     /// @notice Sets equilibration units parameter for L1 price adjustment algorithm
     function setL1PricingEquilibrationUnits(
@@ -217,7 +229,10 @@ interface ArbOwner {
     /// @notice Available in ArbOS version 30 and above
     /// @param gas amount of gas paid in increments of 256 when not the program is not cached
     /// @param cached amount of gas paid in increments of 64 when the program is cached
-    function setWasmMinInitGas(uint8 gas, uint16 cached) external;
+    function setWasmMinInitGas(
+        uint8 gas,
+        uint16 cached
+    ) external;
 
     /// @notice Sets the linear adjustment made to program init costs.
     /// @notice Available in ArbOS version 30 and above
@@ -266,6 +281,18 @@ interface ArbOwner {
     /// @notice Available in ArbOS version 40 and above with default as false
     function setCalldataPriceIncrease(
         bool enable
+    ) external;
+
+    /// @notice Sets the list of gas pricing constraints for the Multi-Constraint Pricer.
+    /// @notice Replaces the existing constraints configuration and sets each constraint's starting backlog value.
+    /// @notice All existing backlogs are replaced by the provided values.
+    /// @notice Any changes to gas targets, periods, or starting backlogs may cause immediate price fluctuations.
+    /// @notice Operators are fully responsible for the resulting behavior and should adjust parameters carefully.
+    /// @notice Use ArbGasInfo.getGasPricingConstraints() to retrieve the current configuration.
+    /// @notice Available in ArbOS version 50 and above.
+    /// @param constraints Array of triples (gas_target_per_second, period_seconds, starting_backlog_value)
+    function setGasPricingConstraints(
+        uint64[3][] calldata constraints
     ) external;
 
     /// Emitted when a successful call is made to this precompile
