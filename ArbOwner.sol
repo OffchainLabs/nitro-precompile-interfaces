@@ -77,8 +77,9 @@ interface ArbOwner {
     ) external;
 
     /// @notice Set the computational speed limit for the chain
+    /// @notice Starting from ArbOS version 50, this function always returns an error.
+    /// @notice Use `setGasPricingConstraints` instead, which supports configuring multiple constraints.
     /// @dev Deprecated starting from ArbOS version 50.
-    ///      Replaced by `setGasPricingConstraints`, which supports multiple constraints.
     function setSpeedLimit(
         uint64 limit
     ) external;
@@ -95,15 +96,17 @@ interface ArbOwner {
     ) external;
 
     /// @notice Set the L2 gas pricing inertia
+    /// @notice Starting from ArbOS version 50, this function always returns an error.
+    /// @notice Use `setGasPricingConstraints` instead, which supports configuring multiple constraints.
     /// @dev Deprecated starting from ArbOS version 50.
-    ///      Replaced by `setGasPricingConstraints`, which supports multiple constraints.
     function setL2GasPricingInertia(
         uint64 sec
     ) external;
 
     /// @notice Set the L2 gas backlog tolerance
+    /// @notice Starting from ArbOS version 50, this function always returns an error.
+    /// @notice Use `setGasPricingConstraints` instead, which supports configuring multiple constraints.
     /// @dev Deprecated starting from ArbOS version 50.
-    ///      Ignored by the Multi-Constraint Pricer model.
     function setL2GasBacklogTolerance(
         uint64 sec
     ) external;
@@ -281,11 +284,15 @@ interface ArbOwner {
     ) external;
 
     /// @notice Sets the list of gas pricing constraints for the Multi-Constraint Pricer.
-    /// @notice Replaces existing constraints configuration and resets all backlogs to zero.
+    /// @notice Replaces the existing constraints configuration and sets each constraint's starting backlog value.
+    /// @notice All existing backlogs are replaced by the provided values.
+    /// @notice Any changes to gas targets, periods, or starting backlogs may cause immediate price fluctuations.
+    /// @notice Operators are fully responsible for the resulting behavior and should adjust parameters carefully.
+    /// @notice Use ArbGasInfo.getGasPricingConstraints() to retrieve the current configuration.
     /// @notice Available in ArbOS version 50 and above.
-    /// @param constraints Array of pairs (gas_target_per_second, time_constant_seconds)
+    /// @param constraints Array of triples (gas_target_per_second, period_seconds, starting_backlog_value)
     function setGasPricingConstraints(
-        uint64[2][] calldata constraints
+        uint64[3][] calldata constraints
     ) external;
 
     /// Emitted when a successful call is made to this precompile
