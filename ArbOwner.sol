@@ -77,9 +77,8 @@ interface ArbOwner {
     ) external;
 
     /// @notice Set the computational speed limit for the chain
-    /// @notice Starting from ArbOS version 50, this function always returns an error.
-    /// @notice Use `setGasPricingConstraints` instead, which supports configuring multiple constraints.
-    /// @dev Deprecated starting from ArbOS version 50.
+    /// @notice Starting from ArbOS version 50, continues to set the legacy single-constraint speed limit value.
+    /// @notice It does not modify the multi-constraint pricing model configuration. To configure multiple constraints, use `setGasPricingConstraints`.
     function setSpeedLimit(
         uint64 limit
     ) external;
@@ -96,17 +95,15 @@ interface ArbOwner {
     ) external;
 
     /// @notice Set the L2 gas pricing inertia
-    /// @notice Starting from ArbOS version 50, this function always returns an error.
-    /// @notice Use `setGasPricingConstraints` instead, which supports configuring multiple constraints.
-    /// @dev Deprecated starting from ArbOS version 50.
+    /// @notice Starting from ArbOS version 50, continues to set the single-constraint pricing inertia value.
+    /// @notice It does not modify the multi-constraint pricing model configuration. To configure multiple constraints, use `setGasPricingConstraints`.
     function setL2GasPricingInertia(
         uint64 sec
     ) external;
 
     /// @notice Set the L2 gas backlog tolerance
-    /// @notice Starting from ArbOS version 50, this function always returns an error.
-    /// @notice Use `setGasPricingConstraints` instead, which supports configuring multiple constraints.
-    /// @dev Deprecated starting from ArbOS version 50.
+    /// @notice Starting from ArbOS version 50, continues to set the single-constraint backlog tolerance value.
+    /// @notice It does not modify the multi-constraint pricing model configuration. There is no tolerance for backlogged gas in the new multi-constraint pricing model.
     function setL2GasBacklogTolerance(
         uint64 sec
     ) external;
@@ -277,14 +274,30 @@ interface ArbOwner {
         bool enable
     ) external;
 
-    /// @notice Sets the list of gas pricing constraints for the Multi-Constraint Pricer.
+    /// @notice Set the backlogged amount of gas burnt used by the single-constraint pricing model only.
+    /// @notice To configure backlogs for the multi-constraint pricing model, use `setGasPricingConstraints()`.
+    /// @param backlog The backlog value in gas units to assign to the single-constraint pricing model.
+    function setGasBacklog(
+        uint64 backlog
+    ) external;
+
+    /// @notice Sets the list of gas pricing constraints for the multi-constraint pricing model.
     /// @notice Replaces the existing constraints configuration and sets each constraint's starting backlog value.
     /// @notice All existing backlogs are replaced by the provided values.
-    /// @notice Any changes to gas targets, periods, or starting backlogs may cause immediate price fluctuations.
+    /// @notice Any changes to gas targets, inertia, or starting backlogs may cause immediate price fluctuations.
     /// @notice Operators are fully responsible for the resulting behavior and should adjust parameters carefully.
-    /// @notice Use ArbGasInfo.getGasPricingConstraints() to retrieve the current configuration.
+    /// @notice Use `ArbGasInfo.getGasPricingConstraints()` to retrieve the current configuration.
+    /// @notice Model selection:
+    /// @notice - If one or more constraints are provided, the chain switches to the multi-constraint pricing model
+    /// @notice   and uses exactly the provided parameters.
+    /// @notice - If zero constraints are provided, the chain uses the single-constraint pricing model.
+    /// @notice   In that case, the single-constraint backlog can be set via `setBacklog`, which you may derive from multi-constraint
+    /// @notice   parameters if desired.
     /// @notice Available in ArbOS version 50 and above.
-    /// @param constraints Array of triples (gas_target_per_second, period_seconds, starting_backlog_value)
+    /// @param constraints Array of triples (gas_target_per_second, adjustment_window_seconds, starting_backlog_value)
+    ///        - gas_target_per_second: target gas usage per second for the constraint (uint64, gas/sec)
+    ///        - adjustment_window_seconds: time over which the price will rise by a factor of e if demand is 2x the target (uint64, seconds)
+    ///        - starting_backlog_value: initial backlog for this constraint (uint64, gas units)
     function setGasPricingConstraints(
         uint64[3][] calldata constraints
     ) external;
