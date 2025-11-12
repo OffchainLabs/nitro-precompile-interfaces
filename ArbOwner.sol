@@ -4,6 +4,8 @@
 
 pragma solidity >=0.4.21 <0.9.0;
 
+import {ArbMultiGasConstraintsTypes} from "./ArbMultiGasConstraintsTypes.sol";
+
 /**
  * @title Provides owners with tools for managing the rollup.
  * @notice Calls by non-owners will always revert.
@@ -300,6 +302,31 @@ interface ArbOwner {
     ///        - starting_backlog_value: initial backlog for this constraint (uint64, gas units)
     function setGasPricingConstraints(
         uint64[3][] calldata constraints
+    ) external;
+
+    /// @notice Sets the list of multi-gas pricing constraints for the multi-dimensional multi-constraint pricing model.
+    /// @notice Replaces the existing configuration and initializes each constraint’s starting backlog value.
+    /// @notice Any previous multi-gas constraints are discarded.
+    ///
+    /// @notice This method defines both the target throughput and relative weights
+    /// @notice of each resource kind participating in multi-dimensional gas pricing.
+    /// @notice Each constraint may specify multiple resources with different weight multipliers.
+    /// @notice The final base fee is determined by the most congested resource dimension.
+    ///
+    /// @notice Model selection:
+    /// @notice - If one or more multi-gas constraints are provided, ArbOS switches to the multi-dimensional
+    /// @notice   pricing model and uses exactly the provided parameters.
+    /// @notice - If zero constraints are provided, the chain reverts to the previous pricing model
+    /// @notice   (either the single-constraint or single-dimensional multi-constraint configuration).
+    ///
+    /// @notice Available in ArbOS version 60 and above.
+    /// @param constraints  Array of `ResourceConstraint` structs, each containing:
+    ///        - `resources`: list of (resource kind, weight) pairs (see the ArbMultiGasConstraintsTypes library for definitions)
+    ///        - `adjustmentWindowSecs`: time window (seconds) over which the price rises by a factor of e if demand is 2x the target (uint64, seconds)
+    ///        - `targetPerSec`: target gas usage per second for this constraint (uint64, gas/sec)
+    ///        - `backlog`: initial backlog value for this constraint  (uint64, gas units)
+    function setMultiGasPricingConstraints(
+        ArbMultiGasConstraintsTypes.ResourceConstraint[] calldata constraints
     ) external;
 
     /// Emitted when a successful call is made to this precompile

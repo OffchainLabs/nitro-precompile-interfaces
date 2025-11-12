@@ -4,6 +4,8 @@
 
 pragma solidity >=0.4.21 <0.9.0;
 
+import {ArbMultiGasConstraintsTypes} from "./ArbMultiGasConstraintsTypes.sol";
+
 /// @title Provides insight into the cost of using the chain.
 /// @notice These methods have been adjusted to account for Nitro's heavy use of calldata compression.
 /// Of note to end-users, we no longer make a distinction between non-zero and zero-valued calldata bytes.
@@ -141,4 +143,21 @@ interface ArbGasInfo {
     /// @return constraints Array of triples (gas_target_per_second, adjustment_window_seconds, backlog)
     /// @notice Available in ArbOS version 50 and above.
     function getGasPricingConstraints() external view returns (uint64[3][] memory constraints);
+
+    /// @notice Get the current multi-gas pricing constraints used by the multi-dimensional multi-constraint pricing model.
+    /// @notice Each constraint includes its target throughput, adjustment window, backlog, and weighted resource configuration.
+    ///
+    /// @notice The array contains one `ResourceConstraint` struct per active constraint.
+    /// @notice Each constraint provides the following fields:
+    ///         - `resources`: list of (resource kind, weight) pairs (see the ArbMultiGasConstraintsTypes library for definitions)
+    ///         - `adjustmentWindowSecs`: time window (seconds) over which the price rises by a factor of e if demand is 2x the target (uint64, seconds)
+    ///         - `targetPerSec`: target gas usage per second for this constraint (uint64, gas/sec)
+    ///         - `backlog`: current backlog value for this constraint (uint64, gas units)
+    /// @return constraints Array of `ResourceConstraint` structs representing the current multi-gas pricing configuration.
+    /// @notice Available in ArbOS version 60 and above.
+    /// @notice See the `ArbMultiGasConstraintsTypes` library for struct definitions and field details.
+    function getMultiGasPricingConstraints()
+        external
+        view
+        returns (ArbMultiGasConstraintsTypes.ResourceConstraint[] memory constraints);
 }
