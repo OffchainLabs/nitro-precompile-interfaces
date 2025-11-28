@@ -64,4 +64,6 @@ interface ArbOwnerPublic {
     function isCalldataPriceIncreaseEnabled() external view returns (bool);
 
     event ChainOwnerRectified(address rectifiedOwner);
+
+    function getMaxStylusContractFragments() external view returns (uint64);
 }
