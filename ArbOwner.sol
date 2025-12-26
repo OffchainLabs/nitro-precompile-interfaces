@@ -63,22 +63,22 @@ interface ArbOwner {
     /// @notice Available in ArbOS version 41 and above
     function getAllNativeTokenOwners() external view returns (address[] memory);
 
-    /// @notice Add account as a transaction censor (authorized to use ArbCensoredTransactionsManager)
+    /// @notice Add account as a transaction censor (authorized to use ArbFilteredTransactionsManager)
     /// @notice Available in ArbOS version 60 and above
     function addTransactionCensor(
-        address newCensor
+        address censor
     ) external;
 
     /// @notice Remove account from the list of transaction censors
     /// @notice Available in ArbOS version 60 and above
     function removeTransactionCensor(
-        address censorToRemove
+        address censor
     ) external;
 
     /// @notice See if the user is a transaction censor
     /// @notice Available in ArbOS version 60 and above
     function isTransactionCensor(
-        address addr
+        address censor
     ) external view returns (bool);
 
     /// @notice Retrieves the list of  transaction censors
