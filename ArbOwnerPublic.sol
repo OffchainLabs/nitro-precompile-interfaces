@@ -64,4 +64,8 @@ interface ArbOwnerPublic {
     function isCalldataPriceIncreaseEnabled() external view returns (bool);
 
     event ChainOwnerRectified(address rectifiedOwner);
+
+    /// @notice Get the Max amount of fragments
+    /// @notice Available in ArbOS version 50 and above
+    function getMaxStylusContractFragments() external view returns (uint16);
 }
