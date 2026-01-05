@@ -41,6 +41,12 @@ interface ArbOwner {
         uint64 timestamp
     ) external;
 
+    /// @notice Sets the TransactionFilteringFrom time
+    /// @notice Available in ArbOS version 60 and above
+    function setTransactionFilteringFrom(
+        uint64 timestamp
+    ) external;
+
     /// @notice Add account as a native token owner
     /// @notice Available in ArbOS version 41 and above
     function addNativeTokenOwner(
