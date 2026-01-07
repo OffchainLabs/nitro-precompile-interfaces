@@ -67,6 +67,5 @@ interface ArbOwnerPublic {
     /// @notice Available in ArbOS version 60 and above
     function getMaxStylusContractFragments() external view returns (uint16);
 
-
     event ChainOwnerRectified(address rectifiedOwner);
 }
