@@ -329,12 +329,12 @@ interface ArbOwner {
         ArbMultiGasConstraintsTypes.ResourceConstraint[] calldata constraints
     ) external;
 
-    /// Emitted when a successful call is made to this precompile
-    event OwnerActs(bytes4 indexed method, address indexed owner, bytes data);
-
-    /// @notice Sets the Max amount of stylus contract fragments that can be used to deploy a stylus contract
+    /// @notice Sets the max amount of stylus contract fragments that can be used to deploy a stylus contract
     /// @notice Available in ArbOS version 60 and above
     function setMaxStylusContractFragments(
         uint16 maxFragments
     ) external;
+
+    /// Emitted when a successful call is made to this precompile
+    event OwnerActs(bytes4 indexed method, address indexed owner, bytes data);
 }
