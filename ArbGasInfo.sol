@@ -160,4 +160,13 @@ interface ArbGasInfo {
         external
         view
         returns (ArbMultiGasConstraintsTypes.ResourceConstraint[] memory constraints);
+
+    /// @notice Get the current per-resource-kind base fees used by the multi-gas pricing model.
+    /// @dev The returned array is indexed by `uint256(ResourceKind)`.
+    /// @dev For example, `baseFees[uint256(ResourceKind.Computation)]` is the base fee
+    /// @dev for computation gas, and `baseFees[uint256(ResourceKind.StorageGrowth)]` is
+    /// @dev the base fee for storage growth. If a resource kind is unused, its entry will be zero.
+    /// @return baseFees An array of base fees in wei, one entry for each `ResourceKind` value.
+    /// @notice Available in ArbOS version 60 and above.
+    function getMultiGasBaseFee() external view returns (uint256[] memory baseFees);
 }
