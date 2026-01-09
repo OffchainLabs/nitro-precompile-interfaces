@@ -69,27 +69,27 @@ interface ArbOwner {
     /// @notice Available in ArbOS version 41 and above
     function getAllNativeTokenOwners() external view returns (address[] memory);
 
-    /// @notice Add account as a transaction censor (authorized to use ArbFilteredTransactionsManager)
+    /// @notice Add account as a transaction filterer (authorized to use ArbFilteredTransactionsManager)
     /// @notice Available in ArbOS version 60 and above
-    function addTransactionCensor(
-        address censor
+    function AddTransactionFilterer(
+        address filterer
     ) external;
 
-    /// @notice Remove account from the list of transaction censors
+    /// @notice Remove account from the list of transaction filterers
     /// @notice Available in ArbOS version 60 and above
-    function removeTransactionCensor(
-        address censor
+    function removeTransactionFilterer(
+        address filterer
     ) external;
 
-    /// @notice See if the user is a transaction censor
+    /// @notice See if the user is a transaction filterer
     /// @notice Available in ArbOS version 60 and above
-    function isTransactionCensor(
-        address censor
+    function isTransactionFilterer(
+        address filterer
     ) external view returns (bool);
 
-    /// @notice Retrieves the list of  transaction censors
+    /// @notice Retrieves the list of  transaction filterers
     /// @notice Available in ArbOS version 60 and above
-    function getAllTransactionCensors() external view returns (address[] memory);
+    function getAllTransactionFilterers() external view returns (address[] memory);
 
     /// @notice Set how slowly ArbOS updates its estimate of the L1 basefee
     function setL1BaseFeeEstimateInertia(
