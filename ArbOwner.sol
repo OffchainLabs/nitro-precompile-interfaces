@@ -41,6 +41,12 @@ interface ArbOwner {
         uint64 timestamp
     ) external;
 
+    /// @notice Sets the TransactionFilteringFrom time
+    /// @notice Available in ArbOS version 60 and above
+    function setTransactionFilteringFrom(
+        uint64 timestamp
+    ) external;
+
     /// @notice Add account as a native token owner
     /// @notice Available in ArbOS version 41 and above
     function addNativeTokenOwner(
@@ -62,6 +68,28 @@ interface ArbOwner {
     /// @notice Retrieves the list of native token owners
     /// @notice Available in ArbOS version 41 and above
     function getAllNativeTokenOwners() external view returns (address[] memory);
+
+    /// @notice Add account as a transaction filterer (authorized to use ArbFilteredTransactionsManager)
+    /// @notice Available in ArbOS version 60 and above
+    function AddTransactionFilterer(
+        address filterer
+    ) external;
+
+    /// @notice Remove account from the list of transaction filterers
+    /// @notice Available in ArbOS version 60 and above
+    function removeTransactionFilterer(
+        address filterer
+    ) external;
+
+    /// @notice See if the user is a transaction filterer
+    /// @notice Available in ArbOS version 60 and above
+    function isTransactionFilterer(
+        address filterer
+    ) external view returns (bool);
+
+    /// @notice Retrieves the list of  transaction filterers
+    /// @notice Available in ArbOS version 60 and above
+    function getAllTransactionFilterers() external view returns (address[] memory);
 
     /// @notice Set how slowly ArbOS updates its estimate of the L1 basefee
     function setL1BaseFeeEstimateInertia(

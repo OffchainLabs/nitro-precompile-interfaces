@@ -27,6 +27,11 @@ interface ArbOwnerPublic {
     /// @notice Available in ArbOS version 50 and above
     function getNativeTokenManagementFrom() external view returns (uint64);
 
+    /// @notice Retrieves the timestamp from when the transaction filtering
+    /// modifications are enabled.
+    /// @notice Available in ArbOS version 60 and above
+    function getTransactionFilteringFrom() external view returns (uint64);
+
     /// @notice See if the user is a native token owner
     /// @notice Available in ArbOS version 41 and above
     function isNativeTokenOwner(
