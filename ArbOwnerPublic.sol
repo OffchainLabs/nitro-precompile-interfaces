@@ -68,4 +68,6 @@ interface ArbOwnerPublic {
     function getMaxStylusContractFragments() external view returns (uint16);
 
     event ChainOwnerRectified(address rectifiedOwner);
+
+    function getMaxStylusContractFragments() external view returns (uint64);
 }
