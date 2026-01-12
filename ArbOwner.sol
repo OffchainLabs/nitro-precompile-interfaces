@@ -17,6 +17,12 @@ import {ArbMultiGasConstraintsTypes} from "./ArbMultiGasConstraintsTypes.sol";
  *
  */
 interface ArbOwner {
+    /// @notice Emitted when an address is added as a transaction filterer.
+    event TransactionFiltererAdded(address indexed filterer);
+
+    /// @notice Emitted when an address is removed as a transaction filterer.
+    event TransactionFiltererRemoved(address indexed filterer);
+
     /// @notice Add account as a chain owner
     function addChainOwner(
         address newOwner
@@ -71,7 +77,7 @@ interface ArbOwner {
 
     /// @notice Add account as a transaction filterer (authorized to use ArbFilteredTransactionsManager)
     /// @notice Available in ArbOS version 60 and above
-    function AddTransactionFilterer(
+    function addTransactionFilterer(
         address filterer
     ) external;
 
