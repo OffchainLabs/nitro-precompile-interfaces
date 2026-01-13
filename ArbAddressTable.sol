@@ -5,7 +5,7 @@
 pragma solidity >=0.4.21 <0.9.0;
 
 /**
- * @title Allows registering / retrieving addresses at uint indices, saving calldata.
+ * @title Deprecated - Allows registering / retrieving addresses at uint indices, saving calldata.
  * @notice Precompiled contract that exists in every Arbitrum chain at 0x0000000000000000000000000000000000000066.
  */
 interface ArbAddressTable {
