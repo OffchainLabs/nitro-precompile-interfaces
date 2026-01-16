@@ -93,7 +93,7 @@ interface ArbOwner {
         address filterer
     ) external view returns (bool);
 
-    /// @notice Retrieves the list of  transaction filterers
+    /// @notice Retrieves the list of transaction filterers
     /// @notice Available in ArbOS version 60 and above
     function getAllTransactionFilterers() external view returns (address[] memory);
 
