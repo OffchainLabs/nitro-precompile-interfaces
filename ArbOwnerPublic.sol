@@ -37,6 +37,21 @@ interface ArbOwnerPublic {
     /// @notice Available in ArbOS version 41 and above
     function getAllNativeTokenOwners() external view returns (address[] memory);
 
+    /// @notice Retrieves the timestamp from when the transaction filtering
+    /// modifications are enabled.
+    /// @notice Available in ArbOS version 60 and above
+    function getTransactionFilteringFrom() external view returns (uint64);
+
+    /// @notice See if the user is a transaction filterer
+    /// @notice Available in ArbOS version 60 and above
+    function isTransactionFilterer(
+        address filterer
+    ) external view returns (bool);
+
+    /// @notice Retrieves the list of transaction filterers
+    /// @notice Available in ArbOS version 60 and above
+    function getAllTransactionFilterers() external view returns (address[] memory);
+
     /// @notice Gets the network fee collector
     function getNetworkFeeAccount() external view returns (address);
 
