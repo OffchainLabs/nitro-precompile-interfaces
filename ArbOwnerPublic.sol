@@ -80,7 +80,7 @@ interface ArbOwnerPublic {
 
     /// @notice Get the max amount of stylus contract fragments that can be used to deploy a stylus contract
     /// @notice Available in ArbOS version 60 and above
-    function getMaxStylusContractFragments() external view returns (uint16);
+    function getMaxStylusContractFragments() external view returns (uint8);
 
     event ChainOwnerRectified(address rectifiedOwner);
 }
