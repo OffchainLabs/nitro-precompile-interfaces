@@ -52,6 +52,11 @@ interface ArbOwnerPublic {
     /// @notice Available in ArbOS version 60 and above
     function getAllTransactionFilterers() external view returns (address[] memory);
 
+    /// @notice Get the address that receives funds redirected from filtered transactions.
+    /// @notice Returns address(0) if not explicitly set (networkFeeAccount is used as fallback at runtime).
+    /// @notice Available in ArbOS version 60 and above
+    function getFilteredFundsRecipient() external view returns (address);
+
     /// @notice Gets the network fee collector
     function getNetworkFeeAccount() external view returns (address);
 

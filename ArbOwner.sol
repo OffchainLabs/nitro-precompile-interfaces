@@ -23,6 +23,10 @@ interface ArbOwner {
     /// @notice Emitted when an address is removed as a transaction filterer.
     event TransactionFiltererRemoved(address indexed filterer);
 
+    /// @notice Emitted when the filtered funds recipient address is changed.
+    /// @notice Available in ArbOS version 60 and above
+    event FilteredFundsRecipientSet(address indexed newRecipient);
+
     /// @notice Add account as a chain owner
     function addChainOwner(
         address newOwner
@@ -96,6 +100,18 @@ interface ArbOwner {
     /// @notice Retrieves the list of transaction filterers
     /// @notice Available in ArbOS version 60 and above
     function getAllTransactionFilterers() external view returns (address[] memory);
+
+    /// @notice Set the address that receives funds redirected from filtered transactions.
+    /// @notice Set to address(0) to use the networkFeeAccount as fallback.
+    /// @notice Available in ArbOS version 60 and above
+    function setFilteredFundsRecipient(
+        address newRecipient
+    ) external;
+
+    /// @notice Get the address that receives funds redirected from filtered transactions.
+    /// @notice Returns address(0) if not explicitly set (networkFeeAccount is used as fallback at runtime).
+    /// @notice Available in ArbOS version 60 and above
+    function getFilteredFundsRecipient() external view returns (address);
 
     /// @notice Set how slowly ArbOS updates its estimate of the L1 basefee
     function setL1BaseFeeEstimateInertia(
