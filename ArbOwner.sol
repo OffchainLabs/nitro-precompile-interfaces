@@ -27,6 +27,18 @@ interface ArbOwner {
     /// @notice Available in ArbOS version 60 and above
     event FilteredFundsRecipientSet(address indexed newRecipient);
 
+    /// @notice Emitted when an address is added as a chain owner.
+    event ChainOwnerAdded(address indexed owner);
+
+    /// @notice Emitted when an address is removed as a chain owner.
+    event ChainOwnerRemoved(address indexed owner);
+
+    /// @notice Emitted when an address is added as a native token owner.
+    event NativeTokenOwnerAdded(address indexed owner);
+
+    /// @notice Emitted when an address is removed as a native token owner.
+    event NativeTokenOwnerRemoved(address indexed owner);
+
     /// @notice Add account as a chain owner
     function addChainOwner(
         address newOwner
