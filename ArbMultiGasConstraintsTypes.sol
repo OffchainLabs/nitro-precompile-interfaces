@@ -17,7 +17,7 @@ library ArbMultiGasConstraintsTypes {
         HistoryGrowth,
         StorageAccess,
         StorageGrowth,
-        L1Calldata,
+        SingleDim,
         L2Calldata,
         WasmComputation
     }
