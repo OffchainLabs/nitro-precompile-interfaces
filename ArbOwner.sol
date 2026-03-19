@@ -395,9 +395,8 @@ interface ArbOwner {
         ArbMultiGasConstraintsTypes.ResourceConstraint[] calldata constraints
     ) external;
 
-    /// @notice Set the minimum tip (wei per gas) for tip collection.
     /// @notice Enables or disables tip collection.
-    /// @notice When enabled, transaction tips are collected by the network fee account.
+    /// @notice When enabled, transaction tips are sent to the network fee account.
     /// @notice Available in ArbOS version 60 and above
     function setCollectTips(
         bool collectTips
