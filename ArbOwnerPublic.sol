@@ -83,10 +83,9 @@ interface ArbOwnerPublic {
     /// @notice Available in ArbOS version 40 with default as false
     function isCalldataPriceIncreaseEnabled() external view returns (bool);
 
-    /// @notice Get the minimum tip (wei per gas) for tip collection.
-    /// @notice Returns 0 if not set, meaning all tips are dropped.
+    /// @notice Returns whether tip collection is enabled.
     /// @notice Available in ArbOS version 60 and above
-    function getTipCapFloor() external view returns (uint256);
+    function getCollectTips() external view returns (bool);
 
     /// @notice Get the max amount of stylus contract fragments that can be used to deploy a stylus contract
     /// @notice Available in ArbOS version 60 and above

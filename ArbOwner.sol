@@ -396,11 +396,11 @@ interface ArbOwner {
     ) external;
 
     /// @notice Set the minimum tip (wei per gas) for tip collection.
-    /// @notice Tips below this floor are dropped.
-    /// @notice Set to 0 to drop all tips (default). Set to 1 to collect all tips.
+    /// @notice Enables or disables tip collection.
+    /// @notice When enabled, transaction tips are collected by the network fee account.
     /// @notice Available in ArbOS version 60 and above
-    function setTipCapFloor(
-        uint256 tipCapFloor
+    function setCollectTips(
+        bool collectTips
     ) external;
 
     /// @notice Sets the max amount of stylus contract fragments that can be used to deploy a stylus contract
