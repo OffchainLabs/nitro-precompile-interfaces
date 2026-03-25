@@ -83,6 +83,10 @@ interface ArbOwnerPublic {
     /// @notice Available in ArbOS version 40 with default as false
     function isCalldataPriceIncreaseEnabled() external view returns (bool);
 
+    /// @notice Returns whether tip collection is enabled.
+    /// @notice Available in ArbOS version 60 and above
+    function getCollectTips() external view returns (bool);
+
     /// @notice Get the max amount of stylus contract fragments that can be used to deploy a stylus contract
     /// @notice Available in ArbOS version 60 and above
     function getMaxStylusContractFragments() external view returns (uint8);

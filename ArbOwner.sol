@@ -395,6 +395,13 @@ interface ArbOwner {
         ArbMultiGasConstraintsTypes.ResourceConstraint[] calldata constraints
     ) external;
 
+    /// @notice Enables or disables tip collection.
+    /// @notice When enabled, transaction tips are sent to the network fee account.
+    /// @notice Available in ArbOS version 60 and above
+    function setCollectTips(
+        bool collectTips
+    ) external;
+
     /// @notice Sets the max amount of stylus contract fragments that can be used to deploy a stylus contract
     /// @notice Available in ArbOS version 60 and above
     function setMaxStylusContractFragments(
