@@ -409,7 +409,7 @@ interface ArbOwner {
     ) external;
 
     /// @notice Sets the constant gas charge applied before each stylus contract activation.
-    /// @notice Defaults to zero. Raise to deter DOS via activations, or set above the block gas limit to block all activations.
+    /// @notice Defaults to zero.
     /// @notice Available in ArbOS version 60 and above
     function setWasmActivationGas(
         uint64 gas
