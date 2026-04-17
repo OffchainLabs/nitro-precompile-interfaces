@@ -302,6 +302,13 @@ interface ArbOwner {
         uint64[3][] calldata constraints
     ) external;
 
+    /// @notice Sets the constant gas charge applied before each stylus contract activation.
+    /// @notice Defaults to zero.
+    /// @notice Available in ArbOS version 60 and above
+    function setWasmActivationGas(
+        uint64 gas
+    ) external;
+
     /// Emitted when a successful call is made to this precompile
     event OwnerActs(bytes4 indexed method, address indexed owner, bytes data);
 }
