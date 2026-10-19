@@ -342,6 +342,13 @@ interface ArbOwner {
         bool enable
     ) external;
 
+    /// @notice Sets the EIP-7976 calldata floor and EIP-7981 access list pricing on or off
+    /// @notice Takes effect only while the calldata price increase (EIP-7623) is enabled
+    /// @notice Available in ArbOS version 70 and above with default as false
+    function setCalldataPriceIncrease7976(
+        bool enable
+    ) external;
+
     /// @notice Set the backlogged amount of gas burnt used by the single-constraint pricing model only.
     /// @notice To configure backlogs for the multi-constraint pricing model, use `setGasPricingConstraints()`.
     /// @param backlog The backlog value in gas units to assign to the single-constraint pricing model.
