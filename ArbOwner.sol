@@ -346,7 +346,7 @@ interface ArbOwner {
     /// @notice Sets the EIP-7976 calldata floor and EIP-7981 access list pricing on or off
     /// @notice Reverts when enabling while the calldata price increase (EIP-7623) is disabled
     /// @notice Available in ArbOS version 70 and above with default as false
-    function setCalldataPriceIncrease7976(
+    function setCalldataPriceIncrease7976And7981(
         bool enable
     ) external;
 
