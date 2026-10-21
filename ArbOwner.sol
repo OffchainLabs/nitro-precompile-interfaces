@@ -350,6 +350,12 @@ interface ArbOwner {
         bool enable
     ) external;
 
+    /// @notice Sets the EIP-2780 intrinsic gas, EIP-8037 state gas and EIP-8038 state access pricing on or off
+    /// @notice Available in ArbOS version 70 and above with default as false
+    function setStateGasPricing2780And8037And8038(
+        bool enable
+    ) external;
+
     /// @notice Set the backlogged amount of gas burnt used by the single-constraint pricing model only.
     /// @notice To configure backlogs for the multi-constraint pricing model, use `setGasPricingConstraints()`.
     /// @param backlog The backlog value in gas units to assign to the single-constraint pricing model.
