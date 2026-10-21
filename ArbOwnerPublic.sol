@@ -87,6 +87,10 @@ interface ArbOwnerPublic {
     /// @notice Available in ArbOS version 70 with default as false
     function isCalldataPriceIncrease7976And7981Enabled() external view returns (bool);
 
+    /// @notice Checks if the EIP-2780 intrinsic gas, EIP-8037 state gas and EIP-8038 state access pricing are enabled
+    /// @notice Available in ArbOS version 70 with default as false
+    function isStateGasPricing2780And8037And8038Enabled() external view returns (bool);
+
     /// @notice Returns whether tip collection is enabled.
     /// @notice Available in ArbOS version 60 and above
     function getCollectTips() external view returns (bool);
