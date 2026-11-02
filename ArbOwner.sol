@@ -423,6 +423,30 @@ interface ArbOwner {
         uint64 gas
     ) external;
 
+    /// @notice Allows account to activate new stylus programs
+    /// @notice Available in ArbOS version 70 and above
+    function addWasmActivator(
+        address activator
+    ) external;
+
+    /// @notice Removes account from the list of stylus program activators
+    /// @notice Available in ArbOS version 70 and above
+    function removeWasmActivator(
+        address activator
+    ) external;
+
+    /// @notice Allows account to deactivate stylus programs
+    /// @notice Available in ArbOS version 70 and above
+    function addWasmDeactivator(
+        address deactivator
+    ) external;
+
+    /// @notice Removes account from the list of stylus program deactivators
+    /// @notice Available in ArbOS version 70 and above
+    function removeWasmDeactivator(
+        address deactivator
+    ) external;
+
     /// Emitted when a successful call is made to this precompile
     event OwnerActs(bytes4 indexed method, address indexed owner, bytes data);
 }
