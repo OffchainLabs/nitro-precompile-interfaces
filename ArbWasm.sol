@@ -116,6 +116,33 @@ interface ArbWasm {
     /// @return gas the activation gas charge
     function activationGas() external view returns (uint64 gas);
 
+    /// @notice Deactivates all programs with the given codehash.
+    /// Caller must be a chain owner or a wasm deactivator.
+    /// @notice Available in ArbOS version 70 and above
+    function deactivateCodehash(
+        bytes32 codehash
+    ) external;
+
+    /// @notice Checks whether account may activate new stylus programs
+    /// @notice Available in ArbOS version 70 and above
+    function isActivator(
+        address account
+    ) external view returns (bool);
+
+    /// @notice Gets all accounts that may activate new stylus programs
+    /// @notice Available in ArbOS version 70 and above
+    function allActivators() external view returns (address[] memory);
+
+    /// @notice Checks whether account may deactivate stylus programs
+    /// @notice Available in ArbOS version 70 and above
+    function isDeactivator(
+        address account
+    ) external view returns (bool);
+
+    /// @notice Gets all accounts that may deactivate stylus programs
+    /// @notice Available in ArbOS version 70 and above
+    function allDeactivators() external view returns (address[] memory);
+
     event ProgramActivated(
         bytes32 indexed codehash,
         bytes32 moduleHash,
@@ -124,6 +151,7 @@ interface ArbWasm {
         uint16 version
     );
     event ProgramLifetimeExtended(bytes32 indexed codehash, uint256 dataFee);
+    event ProgramDeactivated(address indexed deactivator, bytes32 indexed codehash);
 
     error ProgramNotWasm();
     error ProgramNotActivated();
@@ -132,4 +160,6 @@ interface ArbWasm {
     error ProgramUpToDate();
     error ProgramKeepaliveTooSoon(uint64 ageInSeconds);
     error ProgramInsufficientValue(uint256 have, uint256 want);
+    error ProgramActivationNotPermitted(address caller);
+    error ProgramDeactivationNotPermitted(address caller);
 }
