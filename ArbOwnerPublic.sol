@@ -91,6 +91,10 @@ interface ArbOwnerPublic {
     /// @notice Available in ArbOS version 70 with default as false
     function isStateGasPricing2780And8037And8038Enabled() external view returns (bool);
 
+    /// @notice Gets the EIP-8037 cost per state byte
+    /// @notice Available in ArbOS version 70 with default as 1530
+    function getCostPerStateByte() external view returns (uint64);
+
     /// @notice Returns whether tip collection is enabled.
     /// @notice Available in ArbOS version 60 and above
     function getCollectTips() external view returns (bool);
