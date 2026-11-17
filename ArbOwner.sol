@@ -352,7 +352,7 @@ interface ArbOwner {
 
     /// @notice Sets the EIP-2780 intrinsic gas, EIP-8037 state gas and EIP-8038 state access pricing on or off
     /// @notice Available in ArbOS version 70 and above with default as false
-    function setStateGasPricing2780And8037And8038(
+    function setStateGasPricing(
         bool enable
     ) external;
 

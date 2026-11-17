@@ -89,7 +89,7 @@ interface ArbOwnerPublic {
 
     /// @notice Checks if the EIP-2780 intrinsic gas, EIP-8037 state gas and EIP-8038 state access pricing are enabled
     /// @notice Available in ArbOS version 70 with default as false
-    function isStateGasPricing2780And8037And8038Enabled() external view returns (bool);
+    function isStateGasPricingEnabled() external view returns (bool);
 
     /// @notice Gets the EIP-8037 cost per state byte
     /// @notice Available in ArbOS version 70 with default as 1530
