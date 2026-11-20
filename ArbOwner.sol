@@ -97,6 +97,7 @@ interface ArbOwner {
 
     /// @notice Add account as a transaction filterer (authorized to use ArbFilteredTransactionsManager)
     /// @notice Available in ArbOS version 60 and above
+    /// @notice In ArbOS 70 and above, a filtered funds recipient must be set before adding a filterer.
     function addTransactionFilterer(
         address filterer
     ) external;
@@ -118,7 +119,7 @@ interface ArbOwner {
     function getAllTransactionFilterers() external view returns (address[] memory);
 
     /// @notice Set the address that receives funds redirected from filtered transactions.
-    /// @notice Set to address(0) to use the networkFeeAccount as fallback.
+    /// @notice Below ArbOS 70, set to address(0) to use the networkFeeAccount as fallback.
     /// @notice Available in ArbOS version 60 and above
     function setFilteredFundsRecipient(
         address newRecipient
@@ -235,6 +236,7 @@ interface ArbOwner {
 
     /// @notice Sets the Brotli compression level used for fast compression
     /// @notice Available in ArbOS version 20 and above
+    /// @notice In ArbOS 70 and above, a level of 255 disables compression.
     function setBrotliCompressionLevel(
         uint64 level
     ) external;
