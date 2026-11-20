@@ -65,6 +65,7 @@ interface ArbOwnerPublic {
 
     /// @notice Get the Brotli compression level used for fast compression
     /// @notice Available in ArbOS version 20 and above
+    /// @notice In ArbOS 70 and above, the value 255 indicates that compression is disabled.
     function getBrotliCompressionLevel() external view returns (uint64);
 
     /// @notice Get how much L1 charges per non-zero byte of calldata
