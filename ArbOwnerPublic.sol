@@ -79,13 +79,10 @@ interface ArbOwnerPublic {
         view
         returns (uint64 arbosVersion, uint64 scheduledForTimestamp);
 
-    /// @notice Checks if the increased calldata price feature (EIP-7623) is enabled
+    /// @notice Checks if the increased calldata price feature is enabled
+    /// @notice The calldata floor is the EIP-7623 one before ArbOS version 70 and the EIP-7976 one from ArbOS version 70
     /// @notice Available in ArbOS version 40 with default as false
     function isCalldataPriceIncreaseEnabled() external view returns (bool);
-
-    /// @notice Checks if the EIP-7976 calldata floor and EIP-7981 access list pricing are enabled
-    /// @notice Available in ArbOS version 70 with default as false
-    function isCalldataPriceIncrease7976And7981Enabled() external view returns (bool);
 
     /// @notice Returns whether tip collection is enabled.
     /// @notice Available in ArbOS version 60 and above
